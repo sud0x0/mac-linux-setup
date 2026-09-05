@@ -1,6 +1,6 @@
 # mac-linux-setup
 
-A collection of shell scripts to automate development environment setup on macOS and Ubuntu (ARM).
+A collection of shell scripts to automate development environment setup on macOS, Debian and Ubuntu (ARM).
 
 ## Usage
 
@@ -17,6 +17,8 @@ chmod +x vscode-setup.sh
 
 cp zshrc-template.sh ~/.zshrc
 ```
+
+Then manually install Parallels and the Parallels RDS Client.
 
 **Ubuntu (ARM):**
 
@@ -42,6 +44,26 @@ chmod +x setup-claude-plugins.sh
 chmod +x setup-vscode-server.sh
 ./setup-vscode-server.sh
 ```
+
+**Debian (laptop):**
+
+```bash
+cd debian
+
+chmod +x initial-setup.sh
+./initial-setup.sh
+
+cp zshrc-template.sh ~/.zshrc
+
+# Apply the Terminator theme, font, and keybindings
+chmod +x setup-terminator.sh
+./setup-terminator.sh
+
+chmod +x vscode-setup.sh
+./vscode-setup.sh
+```
+
+Then manually install VMware Workstation Pro and the Parallels RDS Client.
 
 ## Development Pattern
 

@@ -34,6 +34,7 @@ sudo apt install -y \
     vim-gtk3 \
     notepadqq \
     terminator \
+    byobu \
     fonts-firacode \
     build-essential \
     pkg-config \
@@ -95,9 +96,7 @@ sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzf /tmp/go.tar.gz
 rm /tmp/go.tar.gz
 
-echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.zshrc
-echo 'export GOPATH=$HOME/go' >> ~/.zshrc
-echo 'export PATH=$PATH:$GOPATH/bin' >> ~/.zshrc
+# Exported for the rest of this script only; zshrc-template.sh persists these.
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
@@ -108,7 +107,6 @@ export PATH=$PATH:$GOPATH/bin
 echo "Installing Rust..."
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 source "$HOME/.cargo/env"
-echo 'source "$HOME/.cargo/env"' >> ~/.zshrc
 
 # ===========================================
 # 9. Node and pnpm
@@ -121,8 +119,6 @@ echo "Installing pnpm..."
 curl -fsSL https://get.pnpm.io/install.sh | sh -
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
-echo 'export PNPM_HOME="$HOME/.local/share/pnpm"' >> ~/.zshrc
-echo 'export PATH="$PNPM_HOME:$PATH"' >> ~/.zshrc
 
 # ===========================================
 # 10. Ansible and ansible-lint
@@ -133,9 +129,9 @@ pipx install ansible-lint
 pipx ensurepath
 
 # ===========================================
-# 11. Terraform
+# 11. Terraform and Packer
 # ===========================================
-echo "Installing Terraform..."
+echo "Installing Terraform and Packer..."
 wget -O- https://apt.releases.hashicorp.com/gpg | \
     gpg --dearmor | \
     sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
@@ -144,7 +140,7 @@ echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
     https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
     sudo tee /etc/apt/sources.list.d/hashicorp.list
 
-sudo apt update && sudo apt install -y terraform
+sudo apt update && sudo apt install -y terraform packer xorriso
 
 # ===========================================
 # 12. pre-commit

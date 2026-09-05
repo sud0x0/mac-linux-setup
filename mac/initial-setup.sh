@@ -23,8 +23,7 @@ echo "Installing Homebrew..."
 if ! command -v brew &> /dev/null; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     
-    # Add Homebrew to PATH
-    echo 'export PATH=/opt/homebrew/bin:$PATH' >> ~/.zshrc
+    # Exported for the rest of this script only; zshrc-template.sh persists this.
     export PATH=/opt/homebrew/bin:$PATH
 else
     echo "Homebrew already installed, skipping..."
@@ -47,14 +46,11 @@ cli_packages=(
 
 # Cask applications
 cask_packages=(
-    kitty
 	visual-studio-code
     brave-browser
-    google-chrome
-    royal-tsx
-    balenaetcher
     coteditor
     keka
+    rectangle
     font-fira-code
 )
 
@@ -132,4 +128,5 @@ mkdir -p "$KITTY_CONFIG_DIR/kitty.d"
 # ===========================================
 echo ""
 echo "Setup complete!"
+echo "Manually install: Parallels & Parallels RDS Client"
 echo ""
