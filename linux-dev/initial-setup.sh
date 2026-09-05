@@ -3,7 +3,7 @@
 # ===========================================
 # Ubuntu Development Environment Setup Script
 # Don't execute as root
-# ARM only. Does not work on AMD
+# Supports arm64 and amd64
 # ===========================================
 
 # Check if running as root
@@ -16,6 +16,30 @@ fi
 set -e
 
 echo "Starting Ubuntu setup..."
+
+# ===========================================
+# Architecture Detection
+# Go and gitleaks both ship per-arch binaries
+# but name them differently: go uses amd64,
+# gitleaks uses x64.
+# ===========================================
+ARCH=$(dpkg --print-architecture)
+case "$ARCH" in
+    amd64)
+        GO_ARCH="amd64"
+        GITLEAKS_ARCH="x64"
+        ;;
+    arm64)
+        GO_ARCH="arm64"
+        GITLEAKS_ARCH="arm64"
+        ;;
+    *)
+        echo "Error: unsupported architecture '$ARCH'."
+        echo "This script supports amd64 and arm64 only."
+        exit 1
+        ;;
+esac
+echo "Detected architecture: $ARCH"
 
 # ===========================================
 # 1. System Update
@@ -91,7 +115,7 @@ pipx ensurepath
 # ===========================================
 echo "Installing Go..."
 GO_VERSION=$(curl -s https://go.dev/dl/?mode=json | jq -r '.[0].version')
-wget -O /tmp/go.tar.gz "https://go.dev/dl/${GO_VERSION}.linux-arm64.tar.gz"
+wget -O /tmp/go.tar.gz "https://go.dev/dl/${GO_VERSION}.linux-${GO_ARCH}.tar.gz"
 sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzf /tmp/go.tar.gz
 rm /tmp/go.tar.gz
@@ -153,7 +177,7 @@ pipx install pre-commit
 # ===========================================
 echo "Installing gitleaks..."
 GITLEAKS_VERSION=$(curl -s https://api.github.com/repos/gitleaks/gitleaks/releases/latest | jq -r '.tag_name')
-wget -O /tmp/gitleaks.tar.gz "https://github.com/gitleaks/gitleaks/releases/download/${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION#v}_linux_arm64.tar.gz"
+wget -O /tmp/gitleaks.tar.gz "https://github.com/gitleaks/gitleaks/releases/download/${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION#v}_linux_${GITLEAKS_ARCH}.tar.gz"
 sudo tar -C /usr/local/bin -xzf /tmp/gitleaks.tar.gz gitleaks
 rm /tmp/gitleaks.tar.gz
 

@@ -1,6 +1,6 @@
 # mac-linux-setup
 
-A collection of shell scripts to automate development environment setup on macOS, Debian and Ubuntu (ARM).
+A collection of shell scripts to automate development environment setup on macOS, Debian and Ubuntu.
 
 ## Usage
 
@@ -20,9 +20,7 @@ cp zshrc-template.sh ~/.zshrc
 
 Then manually install Parallels and the Parallels RDS Client.
 
-**Ubuntu (ARM):**
-
-> The Ubuntu dev script is ARM only and does not support AMD.
+**Ubuntu:**
 
 ```bash
 cd linux-dev
@@ -45,7 +43,7 @@ chmod +x setup-vscode-server.sh
 ./setup-vscode-server.sh
 ```
 
-**Debian (laptop):**
+**Debian:**
 
 ```bash
 cd debian
