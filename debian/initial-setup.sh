@@ -34,6 +34,7 @@ sudo apt install -y \
     netcat-openbsd \
     nmap \
     git \
+    build-essential \
     vim-gtk3 \
     terminator \
     byobu \
@@ -50,13 +51,25 @@ sudo apt install -y \
 sudo mkdir -p /etc/apt/keyrings
 
 # ===========================================
-# 3. Set zsh as default shell
+# 3. Kernel Headers
+# Needed to build the VMware Workstation
+# kernel modules (vmmon/vmnet).
+# ===========================================
+echo "Installing kernel headers..."
+if ! sudo apt install -y "linux-headers-$(uname -r)"; then
+    echo "No headers for the running kernel ($(uname -r)) - likely a pending kernel upgrade."
+    echo "Installing the headers metapackage instead; reboot before building VMware modules."
+    sudo apt install -y "linux-headers-$(dpkg --print-architecture)"
+fi
+
+# ===========================================
+# 4. Set zsh as default shell
 # ===========================================
 echo "Setting zsh as default shell..."
 chsh -s "$(which zsh)"
 
 # ===========================================
-# 4. VS Code
+# 5. VS Code
 # ===========================================
 echo "Installing VS Code..."
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | \
@@ -71,13 +84,13 @@ echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft
 sudo apt update && sudo apt install -y code
 
 # ===========================================
-# 5. Brave Browser
+# 6. Brave Browser
 # ===========================================
 echo "Installing Brave..."
 curl -fsS https://dl.brave.com/install.sh | sh
 
 # ===========================================
-# 6. eza
+# 7. eza
 # ===========================================
 echo "Installing eza..."
 wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | \
