@@ -28,3 +28,13 @@ EOF
 byobu kill-server 2>/dev/null || true
 
 echo "Done. Run: byobu"
+echo "F2: New window"
+echo "F3 F4: Previous / next window"
+echo "F8: Rename window"
+echo "Ctrl-D: Close window or pane"
+echo ""
+echo "Panes"
+echo ""
+echo "Ctrl-F2: Split vertically"
+echo "Shift-F2: Split horizontally"
+echo "Shift-F3 Shift-F4: Move focus between panes"
