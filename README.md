@@ -20,7 +20,7 @@ cp zshrc-template.sh ~/.zshrc
 
 Then manually install Parallels and the Parallels RDS Client.
 
-**Ubuntu:**
+**Ubuntu Server:**
 
 ```bash
 cd linux-dev
@@ -29,10 +29,6 @@ chmod +x initial-setup.sh
 ./initial-setup.sh
 
 cp zshrc-template.sh ~/.zshrc
-
-# Apply the Terminator theme, font, and keybindings
-chmod +x setup-terminator.sh
-./setup-terminator.sh
 
 # Install Claude Code plugins (run after Claude Code is authenticated)
 chmod +x setup-claude-plugins.sh
