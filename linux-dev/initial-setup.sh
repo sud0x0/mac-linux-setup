@@ -56,9 +56,7 @@ sudo apt install -y \
     wget \
     git \
     vim-gtk3 \
-    notepadqq \
-    terminator \
-    byobu \
+    tmux \
     fonts-firacode \
     build-essential \
     pkg-config \
