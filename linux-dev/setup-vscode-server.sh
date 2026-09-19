@@ -38,6 +38,7 @@ extensions=(
     "svelte.svelte-vscode"
     "esbenp.prettier-vscode"
     "dbaeumer.vscode-eslint"
+    "anthropic.claude-code"
 )
 
 for ext in "${extensions[@]}"; do
