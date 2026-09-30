@@ -85,15 +85,15 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 # ===========================================
 echo "Configuring terminal..."
 
-profile_name="Clear Dark"
-profile_file="$(cd "$(dirname "$0")" && pwd)/Clear Dark.terminal"
-
-open "$profile_file"
-sleep 1
-osascript <<EOF
+osascript <<'EOF'
 tell application "Terminal"
-    set default settings to settings set "$profile_name"
-    set startup settings to settings set "$profile_name"
+    set p to settings set "Clear Dark"
+    set font name of p to "FiraCode-Regular"
+    set font size of p to 18
+    set number of columns of p to 134
+    set number of rows of p to 32
+    set default settings to p
+    set startup settings to p
 end tell
 EOF
 
