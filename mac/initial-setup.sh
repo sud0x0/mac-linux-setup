@@ -81,47 +81,21 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores true
 defaults write com.apple.desktopservices DSDontWriteUSBStores true
 
 # ===========================================
-# 4. Kitty Terminal Configuration
+# 4. Terminal Configuration
 # ===========================================
-echo "Configuring Kitty terminal..."
+echo "Configuring terminal..."
 
-KITTY_CONFIG_DIR="$HOME/.config/kitty"
-mkdir -p "$KITTY_CONFIG_DIR"
+profile_name="Clear Dark"
+profile_file="$(cd "$(dirname "$0")" && pwd)/Clear Dark.terminal"
 
-cat > "$KITTY_CONFIG_DIR/kitty.conf" << 'EOF'
-# Include other confs
-include other.conf
-globinclude kitty.d/**/*.conf
-envinclude KITTY_CONF_*
-
-# Shell
-shell /bin/zsh
-
-# Font
-font_family Fira Code
-font_size 16.0
-adjust_line_height 5
-
-# Scroll
-scrollback_lines 200000
-
-# URL
-detect_urls yes
-
-# TERM
-term xterm-kitty
-
-# Jump to beginning and end of word
-map alt+left send_text all \x1b\x62
-map alt+right send_text all \x1b\x66
-
-# Jump to beginning and end of line
-map cmd+left send_text all \x01
-map cmd+right send_text all \x05
+open "$profile_file"
+sleep 1
+osascript <<EOF
+tell application "Terminal"
+    set default settings to settings set "$profile_name"
+    set startup settings to settings set "$profile_name"
+end tell
 EOF
-
-touch "$KITTY_CONFIG_DIR/other.conf"
-mkdir -p "$KITTY_CONFIG_DIR/kitty.d"
 
 # ===========================================
 # Done!
