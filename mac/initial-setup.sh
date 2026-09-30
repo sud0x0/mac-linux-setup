@@ -67,9 +67,9 @@ for cask in "${cask_packages[@]}"; do
 done
 
 # Pin the software that does not need to be regularly updated.
-brew pin eza
-brew pin zsh-syntax-highlighting
-brew pin zsh-autosuggestions
+brew pin eza || echo "Failed to pin eza, continuing..."
+brew pin zsh-syntax-highlighting || echo "Failed to pin zsh-syntax-highlighting, continuing..."
+brew pin zsh-autosuggestions || echo "Failed to pin zsh-autosuggestions, continuing..."
 brew cleanup
 
 # ===========================================
@@ -77,8 +77,8 @@ brew cleanup
 # ===========================================
 echo "Configuring macOS defaults..."
 
-defaults write com.apple.desktopservices DSDontWriteNetworkStores true
-defaults write com.apple.desktopservices DSDontWriteUSBStores true
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
 # ===========================================
 # 4. Terminal Configuration
@@ -102,5 +102,6 @@ EOF
 # ===========================================
 echo ""
 echo "Setup complete!"
+echo "Log out and back in for the .DS_Store settings to take effect."
 echo "Manually install: Parallels & Parallels RDS Client"
 echo ""
