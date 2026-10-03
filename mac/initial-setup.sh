@@ -103,5 +103,5 @@ EOF
 echo ""
 echo "Setup complete!"
 echo "Log out and back in for the .DS_Store settings to take effect."
-echo "Manually install: Parallels & Parallels RDS Client"
+echo "Manually install: Windows App via App Store"
 echo ""
