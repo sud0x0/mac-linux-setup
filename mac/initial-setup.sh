@@ -42,6 +42,7 @@ cli_packages=(
     eza
     zsh-syntax-highlighting
     zsh-autosuggestions
+	tmux
 )
 
 # Cask applications
@@ -70,6 +71,12 @@ done
 brew pin eza || echo "Failed to pin eza, continuing..."
 brew pin zsh-syntax-highlighting || echo "Failed to pin zsh-syntax-highlighting, continuing..."
 brew pin zsh-autosuggestions || echo "Failed to pin zsh-autosuggestions, continuing..."
+brew pin tmux || echo "Failed to pin tmux, continuing..."
+brew pin libevent || echo "Failed to pin libevent, continuing..."
+brew pin ncurses || echo "Failed to pin ncurses, continuing..."
+brew pin utf8proc || echo "Failed to pin utf8proc, continuing..."
+brew pin jemalloc || echo "Failed to pin jemalloc, continuing..."
+brew pin openssl@4 || echo "Failed to pin openssl@4, continuing..."
 brew cleanup
 
 # ===========================================
