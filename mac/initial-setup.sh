@@ -117,6 +117,19 @@ bind -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe-and-cancel
 EOF
 
 # ===========================================
+# 6. vim Configuration
+# ===========================================
+echo "Configuring vim..."
+
+cat > "$HOME/.vimrc" <<'EOF'
+set mouse=a
+set ttymouse=sgr
+set number
+set ruler
+set clipboard=unnamed
+EOF
+
+# ===========================================
 # Done!
 # ===========================================
 echo ""
