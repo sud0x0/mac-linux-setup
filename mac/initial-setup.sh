@@ -133,6 +133,7 @@ set ruler
 set clipboard=unnamed
 syntax on
 colorscheme desert
+highlight EndOfBuffer ctermfg=81 ctermbg=236 guifg=#6dceeb guibg=#333333
 EOF
 
 # ===========================================
