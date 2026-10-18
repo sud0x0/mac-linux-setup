@@ -112,8 +112,12 @@ echo "Configuring tmux..."
 cat > "$HOME/.tmux.conf" <<'EOF'
 set -g mouse on
 set -s copy-command 'pbcopy'
-bind -T copy-mode    MouseDragEnd1Pane send -X copy-pipe-and-cancel
-bind -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe-and-cancel
+unbind -T copy-mode    MouseDragEnd1Pane
+unbind -T copy-mode-vi MouseDragEnd1Pane
+bind   -T copy-mode    y   send -X copy-pipe-and-cancel
+bind   -T copy-mode-vi y   send -X copy-pipe-and-cancel
+bind   -T copy-mode    C-c send -X copy-pipe-and-cancel
+bind   -T copy-mode-vi C-c send -X copy-pipe-and-cancel
 EOF
 
 # ===========================================
