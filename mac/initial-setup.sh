@@ -131,6 +131,8 @@ set ttymouse=sgr
 set number
 set ruler
 set clipboard=unnamed
+syntax on
+colorscheme desert
 EOF
 
 # ===========================================
