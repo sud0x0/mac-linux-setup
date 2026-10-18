@@ -38,6 +38,7 @@ alias td='eza --tree --color=always'
 alias python='python3'
 alias pip='pip3'
 alias clear='printf "\ec"'
+alias cls='clear && tmux clear-history'
 
 # ===========================================
 # SYNTAX HIGHLIGHTING AND AUTOSUGGESTIONS
