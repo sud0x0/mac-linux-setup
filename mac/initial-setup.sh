@@ -105,6 +105,18 @@ end tell
 EOF
 
 # ===========================================
+# 5. tmux Configuration
+# ===========================================
+echo "Configuring tmux..."
+
+cat > "$HOME/.tmux.conf" <<'EOF'
+set -g mouse on
+set -s copy-command 'pbcopy'
+bind -T copy-mode    MouseDragEnd1Pane send -X copy-pipe-and-cancel
+bind -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe-and-cancel
+EOF
+
+# ===========================================
 # Done!
 # ===========================================
 echo ""
