@@ -24,6 +24,7 @@ alias python='/usr/bin/python3'
 alias pip='pip3'
 alias ldev='cd "$HOME/Local_Development/"'
 alias clear='printf "\ec"'
+alias cls='clear && tmux clear-history'
 
 # ===========================================
 # SYNTAX HIGHLIGHTING AND AUTOSUGGESTIONS
