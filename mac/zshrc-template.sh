@@ -26,6 +26,9 @@ alias ldev='cd "$HOME/Local_Development/"'
 alias clear='printf "\ec"'
 alias cls='clear && tmux clear-history'
 
+# Setup Task Manager
+export TM_HOME="$HOME/Documents/Tasks"
+
 # ===========================================
 # SYNTAX HIGHLIGHTING AND AUTOSUGGESTIONS
 # ===========================================
