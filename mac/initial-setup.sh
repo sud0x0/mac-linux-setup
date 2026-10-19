@@ -136,6 +136,13 @@ colorscheme desert
 highlight EndOfBuffer ctermfg=81 ctermbg=236 guifg=#6dceeb guibg=#333333
 set colorcolumn=80
 highlight ColorColumn ctermbg=238 guibg=#444444
+function! s:AutoSave(timer)
+  silent! wall
+endfunction
+
+if !exists('g:autosave_timer')
+  let g:autosave_timer = timer_start(300000, function('s:AutoSave'), {'repeat': -1})
+endif
 EOF
 
 # ===========================================
